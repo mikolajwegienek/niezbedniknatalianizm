@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natalianizm — Oficjalna Strona</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #120e16;
+            color: #f1f1f1;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #8a2be2, #ff1493);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-style: italic;
+            opacity: 0.95;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #1f1828;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            outline: none;
+            padding: 1.2rem 2rem;
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #bbb;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            color: #ff69b4;
+            background-color: #2a2035;
+        }
+
+        .tab-button.active {
+            color: #ffffff;
+            border-bottom: 3px solid #ff1493;
+            background-color: #2a2035;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tab-content {
+            display: none;
+            background: #1d1726;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border: 1px solid #332447;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #ff69b4;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid #332447;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #ba55d3;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #ddd;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background-color: #261e33;
+            border-left: 4px solid #ff1493;
+            padding: 1.2rem;
+            border-radius: 6px;
+        }
+
+        .news-item {
+            background: #261e33;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #382a4d;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: #ff69b4;
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+        }
+
+        .msza-box {
+            background: linear-gradient(135deg, #261e33, #381f42);
+            border: 2px solid #ff1493;
+            border-radius: 10px;
+            padding: 1.8rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.2);
+        }
+
+        .msza-box h3 {
+            color: #ff69b4;
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+        }
+
+        .msza-time {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        label {
+            font-weight: 600;
+            color: #ccc;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #120e16;
+            border: 1px solid #44335c;
+            color: white;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #ff1493;
+        }
+
+        button.submit-btn {
+            background: linear-gradient(135deg, #8a2be2, #ff1493);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        button.submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            border-top: 1px solid #221830;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+            }
+            .tab-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Natalianizm</h1>
+        <p>„Początek Ery Kosmicznej Wibracji”</p>
+    </header>
+
+    <nav>
+        <button class="tab-button active" onclick="openTab(event, 'co-to-jest')">Co to jest natalianizm</button>
+        <button class="tab-button" onclick="openTab(event, 'nowosci')">Nowości</button>
+        <button class="tab-button" onclick="openTab(event, 'informacje')">Informacje</button>
+    </nav>
+
+    <main>
+        <section id="co-to-jest" class="tab-content active">
+            <h2>Co to jest Natalianizm?</h2>
+            <p><strong>Natalianizm</strong> to nurt kosmologiczny oparty na autentycznej historii wielkiej transformacji.</p>
+            <p>Według przekazów kanonicznych, podczas procesu maczania Natalia zaczęła odczuwać niezwykłe, nieziemskie stany. W tym przełomowym momencie doszło do uwolnienia energii, w wyniku której jej bimbały wystrzeliły w przestrzeń kosmiczną i poleciały wprost na Jowisza. Wydarzenie to jest powszechnie uznawane za <strong>Początek Ery Natalianistycznej</strong> (rok 0 N.E.).</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>🌊 Proces Maczania</h3>
+                    <p>Kluczowy moment w historii, w którym rozpoczęła się reakcja łańcuchowa niezwykłych doznań.</p>
+                </div>
+                <div class="card">
+                    <h3>🪐 Misja na Jowisza</h3>
+                    <p>Lot potężnej energii przez układ słoneczny, który wyznaczył punkt zwrotny całej ery.</p>
+                </div>
+                <div class="card">
+                    <h3>🎶 Rytm Bim Bam Bom</h3>
+                    <p>Wibracje, które po opuszczeniu orbity zyskały nową, radosną formę i opanowały plaże wszechświata.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="nowosci" class="tab-content">
+            <h2>Aktualności i Nowości</h2>
+
+<div class="news-item">
+                <div class="news-date">9 PAŹDZIERNIKA 2026</div>
+                <h3>!Pierwsza strona natalianistyczna!</h3>
+                <p>Rozpoczynamy działalność naszej strony.Dopiero ją rozwijamy. POMOŻECIE?</p>
+            </div>
+			
+        </section>
+
+        <section id="informacje" class="tab-content">
+            <h2>Ogłoszenia Parafialne</h2>
+
+            <div class="msza-box">
+                <h3>🔔 Dzisiejsza Uroczysta Msza Święta</h3>
+                <div class="msza-time">Dzisiaj, godz. 21:30</div>
+                <p><strong>Intencja:</strong> Dziękczynna za łaskę Kosmicznego Maczania oraz o pomyślne wibracje <em>Bim Bam Bom</em> dla całej wspólnoty na Jowisza.</p>
+                <p><em>Prosimy o punktualne przybycie i przygotowanie umysłów na kosmiczne połączenie wibracyjne.</em></p>
+            </div>
+
+            </form>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ruch Natalianistyczny. Wszystkie prawa zastrzeżone.</p>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
